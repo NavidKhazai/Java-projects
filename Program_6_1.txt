@@ -1,0 +1,107 @@
+import javax.swing.JOptionPane;
+import java.util.Random;
+import java.util.Scanner;
+import java.io.*;
+
+public class Program_6_1 
+{
+	public static void main(String[] args)
+			throws IOException
+	{
+		boolean done = false;
+		String file_name;
+		String number_string;
+		String random_numbers_file_name;
+		String done_string = "done";
+		int n_File_Count = 1;
+		int random_numbers = 0;
+		int random_value = 0;
+		int range = 0;
+
+		//int found_fib = 0;
+		Random randomNumbers = new Random();
+		
+		while (!done)
+		{
+			file_name = JOptionPane.showInputDialog("Enter a file name"
+													+ " or done to exit: ");
+			if (file_name.equals(done_string))	//page 146
+			{
+				done = true;
+			}
+			
+			
+			else	// The user is not done; file_name is known
+			{			
+				// Append a serial number (n_File_Count) to file_name 
+				random_numbers_file_name = file_name + "_" + n_File_Count;
+				
+				// Determine the range for the random numbers
+				number_string = JOptionPane.showInputDialog("Enter the upper range limit" 
+								+ '\n' + "maximum range is 100: ");
+				range = Integer.parseInt(number_string);
+				
+				while ((range < 1) || (range > 100))
+				{
+					number_string = JOptionPane.showInputDialog("The value you entered is "
+							+ "out of range" + '\n' + "Enter an integer between 1 and 100");
+					range = Integer.parseInt(number_string);	
+				}
+				
+				// Determine how many random numbers the user wants to generate
+				number_string = JOptionPane.showInputDialog("Enter the number of "
+											+ "random numbers you want to generate: ");
+				// Assign the number of random numbers the user wants to generate
+				// to int variable random_numbers
+				random_numbers = Integer.parseInt(number_string);
+
+				// Open file: random_numbers_file_name; and write the number
+				// of random numbers in int variable random_numbers to that file
+				PrintWriter outputFile = new PrintWriter(random_numbers_file_name);
+				for (int i = 1; i <= random_numbers; i++)
+					outputFile.println(randomNumbers.nextInt(range));	
+				outputFile.close();	//close outputFile for writing
+	
+				// We have written the number of random numbers in 
+				// int variable random_numbers to random_numbers_file_name 
+				// in the for loop above. Now open random_numbers_file_name
+				// for reading
+				File random_numbers_file = new File(random_numbers_file_name);
+				Scanner random_numbers_out = new Scanner(random_numbers_file);
+				
+				// Read numbers from random_numbers_file and sum them				
+				int j = 1;
+				int sum = 0;
+				while(j <= random_numbers)
+				{
+					random_value = random_numbers_out.nextInt();
+					sum = sum + random_value;
+					j++;
+				}
+				JOptionPane.showMessageDialog(null, "The integer sum in " 
+										+ random_numbers_file_name + " is " + sum); 
+				n_File_Count++;
+				random_numbers_out.close();
+			}
+						
+			if (done)
+			{
+				n_File_Count--;
+				if (n_File_Count == 1)
+					JOptionPane.showMessageDialog(null, "You opened 1 file");
+				else
+					JOptionPane.showMessageDialog(null, "You opened " 
+														+ n_File_Count + " files"); 
+			}
+		}
+			
+	}	
+}
+				
+				
+				
+				
+				
+				
+				
+				

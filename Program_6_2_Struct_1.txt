@@ -1,0 +1,62 @@
+import java.io.*;
+
+
+public class Program_6_2_Struct_1 
+{
+	public static void main(String[] args)
+			throws IOException
+	{
+
+		boolean isFib = false;
+		boolean isPrime = false;
+		int random_num = 0;
+		int random_numbers = 0;
+
+				int fib_count = 0;
+				int prime_count = 0;
+				int both_count = 0;
+				for (int i = 1; i <= random_numbers; i++)
+				{
+					// outputFile.println(randomNumbers.nextInt(range));
+					// random_num = random_numbers_out.nextInt();
+					random_num = 79;
+					isFib = is_Fibonacci(random_num);
+					isPrime = is_Prime(random_num);
+					if(isFib)
+					{
+						//output_fibonacci_File.println(random_num);
+						fib_count++;
+					}			
+					if(isPrime)
+					{
+						//output_prime_File.println(random_num);
+						prime_count++;
+					}
+					if(isFib && isPrime) 
+					{
+						//output_both_File.println(random_num);
+						both_count++;
+					}
+				}
+
+			}
+
+	public static boolean is_Fibonacci(int random_number)
+	{
+		boolean is_fibonacci = false;
+		// Code to determine if random_number is Fibonacci
+		// if it is set is_fibonacci to true
+		return is_fibonacci;
+	}
+	
+	public static boolean is_Prime(int random_number)
+	{
+		boolean prime = true;	
+		// Code to determine if random_number is prime
+		// if it is not; set prime to false
+		return prime;
+	}
+}
+
+
+
